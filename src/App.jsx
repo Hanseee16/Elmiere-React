@@ -1,5 +1,4 @@
 import Navbar from "./components/Navbar";
-import TestNavbar from "./components/TestNavbar";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Client from "./pages/Client";
@@ -10,8 +9,7 @@ import Footer from "./components/Footer";
 function App() {
   return (
     <>
-      {/* <Navbar /> */}
-      <TestNavbar />
+      <Navbar />
       <Home />
       <About />
       <Client />

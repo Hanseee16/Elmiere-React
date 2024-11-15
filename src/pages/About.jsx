@@ -4,11 +4,12 @@ import imageSatu from "../assets/images/about/about-2.jpg";
 const About = () => {
   return (
     <>
-      <section>
-        <div className="container mx-auto p-4 md:p-6">
+      <section className="py-28">
+        <div className="container mx-auto px-4 md:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 items-center gap-10">
-            <div className="order-1 md:order-1 lg:order-1">
+            <div className="order-1 md:order-1 lg:order-1 relative">
               <img src={imageSatu} alt="" className="w-auto" />
+              <div className="absolute inset-0 bg-black bg-opacity-40"></div>
             </div>
             <div className="text-center order-2 md:order-3 lg:order-2 md:col-span-2 lg:col-span-1">
               <h1 className="text-2xl italic font-medium text-color-primary-text-light dark:text-color-primary-text-dark mb-4">
@@ -34,8 +35,9 @@ const About = () => {
                 </p>
               </div>
             </div>
-            <div className="order-3 md:order-2 lg:order-3">
+            <div className="order-3 md:order-2 lg:order-3 relative">
               <img src={imageDua} alt="" className="w-auto" />
+              <div className="absolute inset-0 bg-black bg-opacity-40"></div>
             </div>
           </div>
         </div>

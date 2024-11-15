@@ -1,101 +1,166 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import Logo from "../assets/images/logo/logo.png";
 
-const Navbar = () => {
-  const [showNavbar, setShowNavbar] = useState(true);
-  const [scrollPosition, setScrollPosition] = useState(0);
-  const [isTop, setIsTop] = useState(true);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+const TestNavbar = () => {
+  const [toggleNavbar, setToggleNavbar] = useState(false);
+  const [darkMode, setDarkMode] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
+  // Handle dark mode
+  useEffect(() => {
+    if (darkMode) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, [darkMode]);
+
+  // Handle scroll event
   useEffect(() => {
     const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-
-      if (currentScrollY > 50) {
-        setIsTop(false);
-        if (currentScrollY < scrollPosition) {
-          setShowNavbar(true);
-        } else {
-          setShowNavbar(false);
-        }
-      } else {
-        setIsTop(true);
-        setShowNavbar(true);
-      }
-
-      setScrollPosition(currentScrollY);
+      setIsScrolled(window.scrollY > 0);
     };
 
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [scrollPosition]);
-
-  const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
-  };
-
-  let navbarStyle = isTop ? "bg-transparent py-4" : "bg-white shadow py-6";
-  let mobileMenuStyle = isMobileMenuOpen ? "left-0" : "-left-full";
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   return (
     <>
       <nav
-        className={`fixed w-full top-0 transition-all duration-300 z-10 ${
-          showNavbar ? "translate-y-0" : "-translate-y-full"
-        } ${navbarStyle}`}
+        className={`bg-color-background-light dark:bg-color-background-dark fixed w-full top-0 z-10 transition-all duration-300 ease-in-out ${
+          isScrolled ? "shadow-md" : "shadow-none"
+        }`}
       >
-        <div className="container mx-auto px-4">
-          <div className="flex justify-between items-center">
+        <div
+          className={`container mx-auto ${
+            isScrolled
+              ? "px-4 md:px-6 lg:px-8 py-4 md:py-6"
+              : "px-4 md:px-6 lg:px-8 py-3 md:py-5"
+          }  flex justify-between items-center`}
+        >
+          <div>
             <a href="">
-              <img src={Logo} alt="Logo" className="w-28" />
+              <img
+                src={Logo}
+                alt="Logo"
+                className={`w-20 md:w-24 ${darkMode ? "invert" : ""}`}
+              />
             </a>
-            <ul
-              className={`fixed top-0 ${mobileMenuStyle} md:static flex flex-col md:flex-row gap-8 w-full md:w-auto h-dvh md:h-auto bg-white md:bg-transparent md:shadow-none shadow-lg transition-all duration-300 items-center justify-center uppercase font-semibold text-lg`}
-            >
+          </div>
+
+          <div className="hidden lg:block">
+            <ul className="flex items-center gap-12 uppercase text-base font-semibold text-color-secondary-text-light dark:text-color-secondary-text-dark">
               <li>
-                <a href="#home" onClick={() => setIsMobileMenuOpen(false)}>
-                  Home
-                </a>
-              </li>
-              <li>
-                <a href="#about" onClick={() => setIsMobileMenuOpen(false)}>
-                  About
-                </a>
-              </li>
-              <li>
-                <a href="#client" onClick={() => setIsMobileMenuOpen(false)}>
-                  Client
-                </a>
-              </li>
-              <li>
-                <a href="#gallery" onClick={() => setIsMobileMenuOpen(false)}>
-                  Gallery
+                <a
+                  href=""
+                  className="hover:text-color-primary-text-light dark:hover:text-color-primary-text-dark transition-all"
+                >
+                  home
                 </a>
               </li>
               <li>
                 <a
-                  href="#testimonial"
-                  onClick={() => setIsMobileMenuOpen(false)}
+                  href=""
+                  className="hover:text-color-primary-text-light dark:hover:text-color-primary-text-dark transition-all"
                 >
-                  Testimonial
+                  about
+                </a>
+              </li>
+              <li>
+                <a
+                  href=""
+                  className="hover:text-color-primary-text-light dark:hover:text-color-primary-text-dark transition-all"
+                >
+                  client
+                </a>
+              </li>
+              <li>
+                <a
+                  href=""
+                  className="hover:text-color-primary-text-light dark:hover:text-color-primary-text-dark transition-all"
+                >
+                  gallery
+                </a>
+              </li>
+              <li>
+                <a
+                  href=""
+                  className="hover:text-color-primary-text-light dark:hover:text-color-primary-text-dark transition-all"
+                >
+                  testimonial
                 </a>
               </li>
             </ul>
-            <button
-              onClick={toggleMobileMenu}
-              className="text-3xl md:hidden focus:outline-none"
-            >
-              {isMobileMenuOpen ? (
-                <i className="ri-close-line"></i>
-              ) : (
-                <i className="ri-menu-3-line"></i>
-              )}
-            </button>
           </div>
+          <div className="flex gap-3 items-center text-xl">
+            <i
+              className={
+                darkMode
+                  ? "ri-sun-fill cursor-pointer text-color-secondary-text-light dark:text-color-secondary-text-dark hover:text-color-primary-text-light dark:hover:text-color-primary-text-dark transition-all"
+                  : "ri-moon-fill cursor-pointer text-color-secondary-text-light dark:text-color-secondary-text-dark hover:text-color-primary-text-light dark:hover:text-color-primary-text-dark transition-all"
+              }
+              onClick={() => setDarkMode(!darkMode)}
+            ></i>
+            <i
+              className={`${
+                toggleNavbar
+                  ? "ri-close-line cursor-pointer text-color-secondary-text-light dark:text-color-primary-text-dark"
+                  : "ri-menu-3-line cursor-pointer text-color-secondary-text-light dark:text-color-primary-text-dark"
+              } lg:hidden`}
+              onClick={() => setToggleNavbar(!toggleNavbar)}
+            ></i>
+          </div>
+        </div>
+        <div className={toggleNavbar ? "block" : "hidden"}>
+          <ul className="flex flex-col justify-center items-center h-screen gap-20 px-4 text-center uppercase font-semibold text-color-primary-text-light dark:text-color-primary-text-dark">
+            <li>
+              <a
+                href=""
+                className="hover:text-color-primary-text-light dark:hover:text-color-primary-text-dark transition-all"
+              >
+                home
+              </a>
+            </li>
+            <li>
+              <a
+                href=""
+                className="hover:text-color-primary-text-light dark:hover:text-color-primary-text-dark transition-all"
+              >
+                about
+              </a>
+            </li>
+            <li>
+              <a
+                href=""
+                className="hover:text-color-primary-text-light dark:hover:text-color-primary-text-dark transition-all"
+              >
+                client
+              </a>
+            </li>
+            <li>
+              <a
+                href=""
+                className="hover:text-color-primary-text-light dark:hover:text-color-primary-text-dark transition-all"
+              >
+                gallery
+              </a>
+            </li>
+            <li>
+              <a
+                href=""
+                className="hover:text-color-primary-text-light dark:hover:text-color-primary-text-dark transition-all"
+              >
+                testimonial
+              </a>
+            </li>
+          </ul>
         </div>
       </nav>
     </>
   );
 };
 
-export default Navbar;
+export default TestNavbar;
