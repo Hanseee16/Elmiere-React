@@ -5,14 +5,14 @@ const About = () => {
   return (
     <>
       <section className="py-28">
-        <div className="container mx-auto px-4 md:px-6 lg:px-8">
+        <div className="container px-4 md:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 items-center gap-10">
             <div className="order-1 md:order-1 lg:order-1 relative">
               <img src={imageSatu} alt="" className="w-auto" />
               <div className="absolute inset-0 bg-black bg-opacity-40"></div>
             </div>
             <div className="text-center order-2 md:order-3 lg:order-2 md:col-span-2 lg:col-span-1">
-              <h1 className="text-2xl italic font-medium text-color-primary-text-light dark:text-color-primary-text-dark mb-4">
+              <h1 className="text-2xl italic font-semibold text-color-primary-text-light dark:text-color-primary-text-dark mb-4">
                 Capturing Emotion, Crafting Artistry, <br /> Creating Memories
               </h1>
               <div className="text-base font-light text-color-secondary-text-light dark:text-color-secondary-text-dark space-y-3">
