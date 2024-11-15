@@ -52,7 +52,7 @@ const TestNavbar = () => {
           </div>
 
           <div className="hidden lg:block">
-            <ul className="flex items-center gap-12 uppercase text-base font-semibold text-color-secondary-text-light dark:text-color-secondary-text-dark">
+            <ul className="flex items-center gap-12 uppercase text-base font-medium text-color-secondary-text-light dark:text-color-secondary-text-dark">
               <li>
                 <a
                   href=""

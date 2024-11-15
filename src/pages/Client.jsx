@@ -11,7 +11,7 @@ const Client = () => {
             <h1 className="text-lg uppercase font-normal text-color-secondary-text-light dark:text-color-secondary-text-dark">
               portfolio
             </h1>
-            <p className="text-3xl italic capitalize font-semibold text-color-primary-text-light dark:text-color-primary-text-dark">
+            <p className="text-2xl italic capitalize font-semibold text-color-primary-text-light dark:text-color-primary-text-dark">
               your living time capsule starts here
             </p>
           </div>
@@ -29,6 +29,19 @@ const Client = () => {
               <div className="absolute inset-0 bg-black bg-opacity-40"></div>
             </a>
           </div>
+          <div className="text-center mt-10">
+            <a
+              className="group relative inline-block text-sm font-medium text-white focus:outline-none focus:ring"
+              href="#"
+            >
+              <span className="absolute inset-0 border border-red-600 group-active:border-red-500"></span>
+              <span className="block border border-red-600 bg-red-600 px-12 py-3 transition-transform active:border-red-500 active:bg-red-500 group-hover:-translate-x-1 group-hover:-translate-y-1">
+                View All
+              </span>
+            </a>
+          </div>
+
+          {/* Base */}
         </div>
       </section>
     </>
